@@ -98,8 +98,10 @@ public class LoginBean implements Serializable {
                 NavigationHandler navigationHandler = facesContect.getApplication().getNavigationHandler();
                 if (type.equalsIgnoreCase("st")) {
                     navigationHandler.handleNavigation(facesContect, null, "/alumni_first_page?faces-redirect=true");
-                } else {
+                } else if (type.equals("admin")) {
                     navigationHandler.handleNavigation(facesContect, null, "/admin_first_page?faces-redirect=true");
+                } else if (type.equals("dsa")) {
+                    navigationHandler.handleNavigation(facesContect, null, "/dsa_employee_first_page?faces-redirect=true");
                 }
             }
         }
