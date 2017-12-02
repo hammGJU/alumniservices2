@@ -24,9 +24,18 @@ import javax.inject.Named;
 @Named(value = "addEmployee")
 public class addEmployeeBean implements Serializable {
 
+    private Integer id;
     private Connection conn;
     private ConnectionDAO dataSource = new ConnectionDAOImpl();
     private Employee employee = new Employee();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Connection getConn() {
         return conn;

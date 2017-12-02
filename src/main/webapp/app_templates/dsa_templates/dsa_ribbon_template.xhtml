@@ -3,46 +3,131 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">  
-    <h:form id="ribbon_menu"             
-            style="direction:#{langBean.dir}; width:100%">
-        <p:panel id="basic" header="DSA" style="margin-bottom:20px">
-            <p:ribbon activeIndex="#{sessionBean.menuIndex}">                        
-                <p:tab title="#{msgs.dsa_jobs}">  
-                    <p:ribbonGroup styleClass="ribbonGroup"
-                                   style="float:#{langBean.styleFloat};">
-                        <p:outputLabel value="test"/>
-                    </p:ribbonGroup>               
-                </p:tab>
+    <!--    <h:form id="ribbon_menu"             
+                style="direction:#{langBean.dir}; width:100%">-->
+    <p:panel id="basic" header="DSA" style="margin-bottom:10px">
+        <p:ribbon activeIndex="#{sessionBean.menuIndex}">                        
+            <p:tab title="#{msgs.dsa_jobs}">  
+                <p:ribbonGroup styleClass="ribbonGroup"
+                               style="float:#{langBean.styleFloat};">
+                    <h:form id="table_jobs_form" style="direction:#{langBean.dir}; width:100%">
+                        <p:dataTable id="table_jobs" var="emp"  value="#{addEmployee.employee}" 
+                                     rowKey="#{emp.Id}" rows="5" rowsPerPageTemplate="5, 10, 15" selection="#{emp.name}"
+                                     emptyMessage="#{msgs.no_data}" paginator="true" paginatorPosition="top"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     >
+                            <p:ajax event="rowSelectRadio" update=":table_jobs_form:table_jobs" />  
+                            <f:facet name="header" id="header">
+                                #{msgs.welcome_msg}
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:5%" />
+                            <p:column headerText="#{msgs.name}" style="width: 15%"
+                                      filterBy="#{emp.nameEn}" filterMatchMode="contains"
+                                      sortBy="#{emp.nameEn}">
+                                <h:outputText value="#{emp.nameEn}" />
 
-                <p:tab title="#{msgs.dsa_students}">  
-                    <p:ribbonGroup styleClass="ribbonGroup"
-                                   style="float:#{langBean.styleFloat};">
-                        <p:outputLabel value="test"/>
-                    </p:ribbonGroup>           
-                </p:tab>
+                            </p:column>
+                            <p:column headerText="#{msgs.school}" style="width: 20%"
+                                      filterBy="#{emp.school}" filterMatchMode="contains"
+                                      sortBy="#{emp.school}">
+                                <h:outputText value="#{emp.school}" />
 
-                <p:tab title="#{msgs.dsa_stats}">  
-                    <p:ribbonGroup styleClass="ribbonGroup"
-                                   style="float:#{langBean.styleFloat};">
-                        <p:outputLabel value="test"/>
-                    </p:ribbonGroup>             
-                </p:tab>
-            </p:ribbon>
-        </p:panel>
-        <h:panelGrid id="dsa_post"
-                     style="float: #{langBean.styleFloat};" 
-                     columns="2"                              
-                     dir="#{langBean.dir}">
-            <p:commandButton value="#{msgs.employee_search}" styleClass="commandButton"
-                             icon="ui-icon-add" iconPos="#"
-                             ajax="false"
-                             style="float:#{langBean.styleFloat}"                                                                   
-                             actionListener="#" />
-            <p:commandButton value="#{msgs.cancel}" styleClass="commandButton"
-                             icon="ui-icon-cancel" iconPos="#"
-                             immediate="true"
-                             style="float:#{langBean.styleFloat}"                                                                   
-                             action="page name" />
-        </h:panelGrid>
-    </h:form>
+                            </p:column>
+                            <p:column headerText="#{msgs.department}" style="width: 20%"
+                                      filterBy="#{emp.department}" filterMatchMode="contains"
+                                      sortBy="#{emp.department}">
+                                <h:outputText value="#{emp.department}" />
+
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:toolbar style="border: none">
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="#{msgs.employee_search}" styleClass="commandButton"
+                                                         style="float: left"
+                                                         icon="ui-icon-edit" iconPos="1"
+                                                         ajax="false"                                                                  
+                                                         action="#{emp.viewJob}" />
+                                    </p:toolbarGroup>
+                                </p:toolbar>
+                            </f:facet>
+
+                        </p:dataTable>
+
+                    </h:form>
+                </p:ribbonGroup>               
+            </p:tab>
+
+            <p:tab title="#{msgs.dsa_students}">  
+                <p:ribbonGroup styleClass="ribbonGroup"
+                               style="float:#{langBean.styleFloat};">
+                    <h:form id="table_students_form" style="direction:#{langBean.dir}; width:100%">
+                        <p:dataTable id="table_students" var="emp"  value="#{addEmployee.employee}" 
+                                     rowKey="#{emp.Id}" rows="5" rowsPerPageTemplate="5, 10, 15" selection="#{emp.name}"
+                                     emptyMessage="#{msgs.no_data}" paginator="true" paginatorPosition="top"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     >
+                            <p:ajax event="rowSelectRadio" update=":table_students_form:table_students" />  
+                            <f:facet name="header" id="header">
+                                #{msgs.welcome_msg}
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:5%" />
+                            <p:column headerText="#{msgs.name}" style="width: 15%"
+                                      filterBy="#{emp.nameEn}" filterMatchMode="contains"
+                                      sortBy="#{emp.nameEn}">
+                                <h:outputText value="#{emp.nameEn}" />
+
+                            </p:column>
+                            <p:column headerText="#{msgs.school}" style="width: 20%"
+                                      filterBy="#{emp.school}" filterMatchMode="contains"
+                                      sortBy="#{emp.school}">
+                                <h:outputText value="#{emp.school}" />
+
+                            </p:column>
+                            <p:column headerText="#{msgs.department}" style="width: 20%"
+                                      filterBy="#{emp.department}" filterMatchMode="contains"
+                                      sortBy="#{emp.department}">
+                                <h:outputText value="#{emp.department}" />
+
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:toolbar style="border: none">
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="#{msgs.student}" styleClass="commandButton"
+                                                         style="float: left"
+                                                         icon="ui-icon-edit" iconPos="1"
+                                                         ajax="false"                                                                  
+                                                         action="#{emp.viewStudent}" />
+                                    </p:toolbarGroup>
+                                </p:toolbar>
+                            </f:facet>
+                        </p:dataTable>
+
+                    </h:form>
+                </p:ribbonGroup>           
+            </p:tab>
+
+            <p:tab title="#{msgs.dsa_stats}">  
+                <p:ribbonGroup styleClass="ribbonGroup"
+                               style="float:#{langBean.styleFloat};">
+                    <p:outputLabel value="test"/>
+                </p:ribbonGroup>             
+            </p:tab>
+        </p:ribbon>
+    </p:panel>
+    <!--        <h:panelGrid id="dsa_post"
+                         style="float: #{langBean.styleFloat};" 
+                         columns="2"                              
+                         dir="#{langBean.dir}">
+                <p:commandButton value="#{msgs.employee_search}" styleClass="commandButton"
+                                 icon="ui-icon-add" iconPos="#"
+                                 ajax="false"
+                                 style="float:#{langBean.styleFloat}"                                                                   
+                                 actionListener="#" />
+                <p:commandButton value="#{msgs.cancel}" styleClass="commandButton"
+                                 icon="ui-icon-cancel" iconPos="#"
+                                 immediate="true"
+                                 style="float:#{langBean.styleFloat}"                                                                   
+                                 action="page name" />
+            </h:panelGrid>-->
+    <!--</h:form>-->
 </ui:composition>
