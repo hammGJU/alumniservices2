@@ -29,30 +29,37 @@ and open the template in the editor.
                                 <h:outputText value="#{msgs.student_lname_en}" />
                                 <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
 
-                                <h:outputText value="Age: " />
-                                <p:inputText value="#{userWizard.user.age}" />
+                                <h:outputText value="#{msgs.student_id}" />
+                                <p:inputText value="#}" />
 
-                                <h:outputText value="Skip to last: " />
-                                <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                                <h:outputText value="#{msgs.student_nationality}" />
+                                <p:inputText value="#{userWizard.user.firstname}" />
+
+                                <h:outputText value="#{msgs.student_dob}" />
+                                <p:calendar id="dob" value="#{userWizard.dateOfBirth}" showOn="button"/>
+                                <!--
+                                                                <h:outputText value="Skip to last: " />
+                                                                <h:selectBooleanCheckbox value="#{userWizard.skip}" />-->
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="address" title="Address">
-                        <p:panel header="Address Details">
+                    <p:tab id="address" title="#{msgs.student_contact_info}">
+                        <p:panel header="#{msgs.student_contact_info}">
                             <p:messages />
                             <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="Street: " />
-                                <p:inputText value="#{userWizard.user.street}" />
+                                <h:outputText value="#{msgs.email}" />
+                                <p:inputText value="#{userWizard.user.street}" required="true" />
 
-                                <h:outputText value="Postal Code: " />
-                                <p:inputText value="#{userWizard.user.postalCode}" />
+                                <h:outputText value="#{msgs.mobile_number}" />
+                                <p:inputText value="#{userWizard.user.postalCode}" required="true" />
 
-                                <h:outputText value="City: " />
+                                <h:outputText value="#{msgs.country}" />
                                 <p:inputText value="#{userWizard.user.city}" />
 
-                                <h:outputText value="Skip to last: " />
-                                <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                                <h:outputText value="#{msgs.city}" />
+                                <p:inputText value="#{userWizard.user.city}" />
+                                <!--<h:selectBooleanCheckbox value="#{userWizard.skip}" />-->
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>

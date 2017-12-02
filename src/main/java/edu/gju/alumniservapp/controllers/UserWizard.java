@@ -11,6 +11,7 @@ package edu.gju.alumniservapp.controllers;
  */
 import edu.gju.alumniservapp.models.User;
 import java.io.Serializable;
+import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,8 +23,17 @@ import org.primefaces.event.FlowEvent;
 public class UserWizard implements Serializable {
 
     private User user = new User();
+    private Date dateOfBirth;
 
     private boolean skip;
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public User getUser() {
         return user;
