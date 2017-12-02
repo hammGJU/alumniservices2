@@ -109,7 +109,7 @@
             <p:tab title="#{msgs.dsa_stats}">  
                 <p:ribbonGroup styleClass="ribbonGroup"
                                style="float:#{langBean.styleFloat};">
-                    <p:outputLabel value="test"/>
+                    <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
                 </p:ribbonGroup>             
             </p:tab>
         </p:ribbon>
